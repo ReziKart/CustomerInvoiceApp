@@ -1,0 +1,61 @@
+<h2>Edit Invoice</h2>
+<ng-container *ngIf="invoice$ | async as invoice">
+  <form
+    [formGroup]="editInvoiceForm"
+    (submit)="saveChanges()"
+    class="invoice-form"
+  >
+    <mat-form-field>
+      <mat-label>Invoice Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="invoiceDatepicker"
+        formControlName="invoiceDate"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="invoiceDatepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #invoiceDatepicker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Amount</mat-label>
+      <input matInput type="number" formControlName="amount" required />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option *ngFor="let status of statuses$ | async" [value]="status">
+          {{ invoiceStatusMap[status] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Due Date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dueDatepicker"
+        formControlName="dueDate"
+        required
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="dueDatepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #dueDatepicker></mat-datepicker>
+    </mat-form-field>
+
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="editInvoiceForm.invalid"
+    >
+      Save Changes
+    </button>
+  </form>
+</ng-container>

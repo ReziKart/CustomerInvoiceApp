@@ -1,0 +1,54 @@
+<div class="create-invoice-container mat-elevation-z4">
+  <h2>Create New Invoice</h2>
+  <form [formGroup]="invoiceForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="invoiceDatepicker"
+        placeholder="Invoice Date"
+        formControlName="invoiceDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="invoiceDatepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #invoiceDatepicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="dueDatepicker"
+        placeholder="Due Date"
+        formControlName="dueDate"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="dueDatepicker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #dueDatepicker></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="status">
+        <mat-option *ngFor="let status of statuses$ | async" [value]="status">
+          {{ invoiceStatusMap[status] }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Amount"
+        type="number"
+        formControlName="amount"
+      />
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!invoiceForm.valid"
+    >
+      Create Invoice
+    </button>
+  </form>
+</div>

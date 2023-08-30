@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />
+  <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.10" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Autofac" Version="7.1.0" />
+    <PackageReference Include="Polly" Version="7.2.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Controllers\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Infrastructure\AutofacModules\" />
+    <None Remove="Infrastructure\Filters\" />
+    <None Remove="Infrastructure\Extensions\" />
+    <None Remove="Infrastructure\ActionResults\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controllers\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Infrastructure\AutofacModules\" />
+    <Folder Include="Infrastructure\Filters\" />
+    <Folder Include="Infrastructure\Extensions\" />
+    <Folder Include="Infrastructure\ActionResults\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UniTaskAssignment.Application\UniTaskAssignment.Application.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\UniTaskAssignment.Persistence\UniTaskAssignment.Persistence.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+  </ItemGroup>
+</Project>

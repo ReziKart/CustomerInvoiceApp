@@ -1,0 +1,23 @@
+.create-invoice-container {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  mat-form-field {
+    margin-bottom: 16px;
+    width: 100%;
+  }
+  
+  button {
+    align-self: flex-end;
+  }
+  

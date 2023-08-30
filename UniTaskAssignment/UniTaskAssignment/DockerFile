@@ -1,0 +1,20 @@
+﻿# Use the .NET SDK as the base image
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /app
+
+# Copy the application code to the image
+COPY . ./
+
+# Build the application
+RUN dotnet publish -c Release -o out
+
+# Build the final image
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+WORKDIR /app
+COPY --from=build /app/out .
+
+# Set environment variables (if needed)
+ENV ASPNETCORE_ENVIRONMENT=Production
+
+# Start the application
+ENTRYPOINT ["dotnet", "YourApp.dll"]
